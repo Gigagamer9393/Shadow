@@ -122,8 +122,8 @@ body { transition: background-color 0.3s; }
   <!-- Links -->
   <h2 class="text-xl font-bold mb-4">Links</h2>
   <div>
-    <a href="https://youtube.com/@gigarazorlp1911?si=efNtuKfd6bBa7vQP" target="_blank" class="download-btn">YouTube</a>
-    <a href="https://discord.com/invite/UGqxpbrcux" target="_blank" class="download-btn">Discord</a>
+    <a href="https://youtube.com" target="_blank" class="download-btn">YouTube</a>
+    <a href="https://discord.com" target="_blank" class="download-btn">Discord</a>
   </div>
 </div>
 
@@ -140,12 +140,15 @@ body { transition: background-color 0.3s; }
 
 <script>
 // SHA-256 Login
-const SECRET_CODE_HASH = "8b9813b1c66f02822b9a0df48f48bbf32da050168f0fa00f3b50fbb0f7a60b4c"; // Hash von "GIGARAZOR123"
 async function hashCode(code){
   const enc = new TextEncoder();
   const buffer = await crypto.subtle.digest('SHA-256', enc.encode(code));
-  return Array.from(new Uint8Array(buffer)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  return Array.from(new Uint8Array(buffer))
+              .map(b=>b.toString(16).padStart(2,'0')).join('');
 }
+
+// SHA-256 Hash für "GIGARAZOR123"
+const SECRET_CODE_HASH = "8b9813b1c66f02822b9a0df48f48bbf32da050168f0fa00f3b50fbb0f7a60b4c";
 
 document.getElementById('loginBtn').addEventListener('click', async ()=>{
   const userCode = document.getElementById("codeInput").value.trim();
@@ -154,7 +157,9 @@ document.getElementById('loginBtn').addEventListener('click', async ()=>{
   if(hashedInput === SECRET_CODE_HASH){
     localStorage.setItem("loggedIn", "true");
     showDashboard();
-  } else msg.textContent="❌ Falscher Code!";
+  } else {
+    msg.textContent="❌ Falscher Code!";
+  }
 });
 
 function showDashboard(){
@@ -164,7 +169,7 @@ function showDashboard(){
 if(localStorage.getItem("loggedIn")==="true"){ showDashboard(); }
 
 // Status
-const BLINKING_STATUS = "Undetect";
+const BLINKING_STATUS = "Testing";
 const STATUS_CONFIG = { 'Undetect': {color:'#3b82f6'}, 'Detect': {color:'#ef4444'}, 'Testing': {color:'#f59e0b'} };
 const statusContainer = document.getElementById('statusContainer');
 const statusText = document.getElementById('currentStatus');
@@ -185,8 +190,7 @@ const savedTheme = localStorage.getItem('theme') || 'dark';
 themeSelect.value = savedTheme;
 function setTheme(theme){
   if(theme==='dark'){ document.body.style.background='#0f172a'; document.body.style.color='white'; }
-  if(theme==='neon'){ document.body.style.background='#000'; document
-.body.style.color='#0ff'; }
+  if(theme==='neon'){ document.body.style.background='#000'; document.body.style.color='#0ff'; }
   if(theme==='cyberpunk'){ document.body.style.background='#4c1d95'; document.body.style.color='#f472b6'; }
   localStorage.setItem('theme', theme);
 }
@@ -204,16 +208,14 @@ document.querySelectorAll('.show-pass-btn').forEach(btn=>{
     const pass = btn.getAttribute('data-pass');
     const display = btn.nextElementSibling;
     display.textContent = pass;
-    navigator.clipboard.writeText(pass); // Kopieren in die Zwischenablage
+    navigator.clipboard.writeText(pass);
   });
 });
 
 // Download-Button Animation beim Klicken
 document.querySelectorAll('.download-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
-    btn.classList.remove('flash'); // Reset
-    void btn.offsetWidth; // Reflow
-    btn.classList.add('flash'); // Start Animation
+    btn.classList.remove('flash'); void btn.offsetWidth; btn.classList.add('flash');
   });
 });
 </script>
