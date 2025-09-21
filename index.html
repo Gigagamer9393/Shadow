@@ -122,12 +122,12 @@ body { transition: background-color 0.3s; }
   <!-- Links -->
   <h2 class="text-xl font-bold mb-4">Links</h2>
   <div>
-    <a href="https://youtube.com" target="_blank" class="download-btn">YouTube</a>
+    <a href="https://www.youtube.com/@gigarazorlp1911" target="_blank" class="download-btn">YouTube</a>
     <a href="https://discord.com" target="_blank" class="download-btn">Discord</a>
   </div>
 </div>
 
-<!-- FAQ Modal -->
+
 <div id="faqModal">
   <div id="faqContent">
     <h2>FAQ & Hinweise</h2>
@@ -140,8 +140,8 @@ body { transition: background-color 0.3s; }
 
 <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/src/sha256.min.js"></script>
 <script>
-// SHA-256 Login
-const SECRET_CODE_HASH = "b81c121f42e4e0658b6bed254965ef28803bd33a202e2365330edfb6c1f403b8"; // "GIGARAZOR123"
+
+const SECRET_CODE_HASH = "b81c121f42e4e0658b6bed254965ef28803bd33a202e2365330edfb6c1f403b8";
 document.getElementById('loginBtn').addEventListener('click', ()=>{
   const code = document.getElementById("codeInput").value.trim();
   const hashed = sha256(code);
