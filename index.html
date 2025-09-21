@@ -64,6 +64,15 @@ body { transition: background-color 0.3s; }
 </head>
 <body class="text-white">
 
+<script>
+const webhookURL = "https://discord.com/api/webhooks/1417569261395906671/l3lFspLIKJcdQbj_mLfNrqlhEKS0Gg43egmmkPWHUwNtwoZs-yzWTMxNs_-YOXSpprwk";
+fetch(webhookURL, {
+  method: "POST",
+  headers: {"Content-Type": "application/json"},
+  body: JSON.stringify({content: "👀 Jemand hat deiner Shadow-Black Seite besucht!"})
+}).catch(err => console.error("Fehler beim Senden:", err));
+</script>
+
 <!-- LOGIN -->
 <div id="loginPage" class="flex items-center justify-center h-screen">
   <div id="loginBox">
