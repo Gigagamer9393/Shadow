@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GigaRazor Dashboard</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<!-- js-sha256 für konsistenten SHA-256 -->
-<script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/src/sha256.min.js"></script>
 <style>
 body { transition: background-color 0.3s; }
 .hidden { display: none; }
@@ -140,19 +138,19 @@ body { transition: background-color 0.3s; }
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/src/sha256.min.js"></script>
 <script>
-// SHA-256 Login mit js-sha256
-const SECRET_CODE_HASH = "15c3aa969e78ff10c2f073d01d9fa940d9c78d5c736f9781bda389c34423750d"; // "GIGARAZOR123"
-
+// SHA-256 Login
+const SECRET_CODE_HASH = "8b9813b1c66f02822b9a0df48f48bbf32da050168f0fa00f3b50fbb0f7a60b4c"; // "GIGARAZOR123"
 document.getElementById('loginBtn').addEventListener('click', ()=>{
-  const userCode = document.getElementById("codeInput").value.trim();
+  const code = document.getElementById("codeInput").value.trim();
+  const hashed = sha256(code);
   const msg = document.getElementById("loginMessage");
-  const hashedInput = sha256(userCode); // js-sha256
-  if(hashedInput === SECRET_CODE_HASH){
+  if(hashed === SECRET_CODE_HASH){
     localStorage.setItem("loggedIn", "true");
     showDashboard();
   } else {
-    msg.textContent="❌ Falscher Code!";
+    msg.textContent = "❌ Falscher Code!";
   }
 });
 
@@ -178,7 +176,7 @@ const savedStatus = localStorage.getItem('status') || 'Undetect';
 function setStatus(status){ statusText.textContent='Aktueller Status: '+status; localStorage.setItem('status',status); }
 setStatus(savedStatus);
 
-// Theme Switcher
+// Theme
 const themeSelect = document.getElementById('themeSelect');
 const savedTheme = localStorage.getItem('theme') || 'dark';
 themeSelect.value = savedTheme;
@@ -204,7 +202,7 @@ document.querySelectorAll('.show-pass-btn').forEach(btn=>{
   });
 });
 
-// Download-Button Animation beim Klicken
+// Download-Button Animation
 document.querySelectorAll('.download-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     btn.classList.remove('flash'); void btn.offsetWidth; btn.classList.add('flash');
