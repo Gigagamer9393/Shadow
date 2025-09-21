@@ -128,7 +128,6 @@ body { transition: background-color 0.3s; }
   </div>
 </div>
 
-
 <div id="faqModal">
   <div id="faqContent">
     <h2>FAQ & Hinweise</h2>
@@ -139,9 +138,11 @@ body { transition: background-color 0.3s; }
   </div>
 </div>
 
+<!-- Klick-Sound -->
+<audio id="clickSound" src="click.mp3" preload="auto"></audio>
+
 <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/src/sha256.min.js"></script>
 <script>
-
 const SECRET_CODE_HASH = "b81c121f42e4e0658b6bed254965ef28803bd33a202e2365330edfb6c1f403b8";
 document.getElementById('loginBtn').addEventListener('click', ()=>{
   const code = document.getElementById("codeInput").value.trim();
@@ -207,6 +208,15 @@ document.querySelectorAll('.show-pass-btn').forEach(btn=>{
 document.querySelectorAll('.download-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     btn.classList.remove('flash'); void btn.offsetWidth; btn.classList.add('flash');
+  });
+});
+
+// 🔊 Klick-Sound für alle Buttons
+const clickSound = document.getElementById('clickSound');
+document.querySelectorAll('button, .download-btn, .show-pass-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    clickSound.currentTime = 0;
+    clickSound.play();
   });
 });
 </script>
