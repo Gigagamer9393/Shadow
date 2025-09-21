@@ -141,7 +141,7 @@ body { transition: background-color 0.3s; }
 <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/src/sha256.min.js"></script>
 <script>
 // SHA-256 Login
-const SECRET_CODE_HASH = "8b9813b1c66f02822b9a0df48f48bbf32da050168f0fa00f3b50fbb0f7a60b4c"; // "GIGARAZOR123"
+const SECRET_CODE_HASH = "b81c121f42e4e0658b6bed254965ef28803bd33a202e2365330edfb6c1f403b8"; // "GIGARAZOR123"
 document.getElementById('loginBtn').addEventListener('click', ()=>{
   const code = document.getElementById("codeInput").value.trim();
   const hashed = sha256(code);
