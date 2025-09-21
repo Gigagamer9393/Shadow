@@ -140,7 +140,7 @@ body { transition: background-color 0.3s; }
 
 <script>
 // SHA-256 Login
-const SECRET_CODE_HASH = "ef775988943825d2871e1cfa75473ecf8bcf1c6bdefe5b1e1230e8266b0f1e52"; // Hash von "GIGARAZOR123"
+const SECRET_CODE_HASH = "b81c121f42e4e0658b6bed254965ef28803bd33a202e2365330edfb6c1f403b8"; // Hash von "GIGARAZOR123"
 async function hashCode(code){
   const enc = new TextEncoder();
   const buffer = await crypto.subtle.digest('SHA-256', enc.encode(code));
